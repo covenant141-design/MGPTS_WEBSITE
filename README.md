@@ -29,7 +29,6 @@ To keep the repository clean, files are organized as follows:
 ├── contact.html        # Contact form and location details
 │
 ├── /assets
-│   ├── /images         # Product shots, logos, and icons
-│   └── /videos         # Software demos (demo.mp4)
-│
-└── README.md           # Project Documentation
+    ├── /images         # Product shots, logos, and icons
+    └── /videos         # Software demos (demo.mp4)
+
