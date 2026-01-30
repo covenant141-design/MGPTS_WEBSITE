@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Perfect Tech Solution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS RESET & VARIABLES --- */
+        :root {
+            /* 1. FIXED: Unified Variable Names */
+            --neon-green: #39ff14; 
+            --dark-bg: #050505;
+            --text-grey: #a0a0a0;
+            --white: #ffffff;
+           --font-head: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--white);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; } /* 2. FIXED: Removes dots globally */
+
+        .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark Background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    
+    /* This centers the inner content box */
+    display: flex;
+    justify-content: center; 
+}
+
+/* 2. The Inner Content (Handles Width Limit & Layout) */
+.nav-content {
+    width: 100%;
+    max-width: 1400px; /* LIMIT: Content won't stretch wider than this */
+    display: flex;
+    justify-content: space-between; /* Spreads items inside the limit */
+    align-items: center;
+    padding: 26px 4%; /* Padding stays inside the box */
+}
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: var(--font-head);
+            font-weight: 700; font-size: 1.1rem;
+            color: var(--neon-green); letter-spacing: 1px;
+            margin-left: 0 !important;
+        }
+        .logo svg { width: 24px; height: 24px; fill: var(--neon-green); }
+        .top-mini-logo { width: 40px; 
+        margin-bottom: 4px; 
+        filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.5)); 
+        
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 30px; 
+            align-items: center;
+            list-style: none; /* Double check to remove dots */
+        }
+        .nav-links li { position: relative; }
+
+        .nav-links a.active {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+        .nav-links > li > a {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: 600;
+            color: var(--white); transition: color 0.3s;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .nav-links > li > a:hover { color: var(--neon-green); }
+        .nav-links > li > a span { font-size: 0.6rem; transition: transform 0.3s; }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none; position: absolute;
+            top: 100%; left: -10px;
+            background: rgba(27,27,27, 0.95);
+            border: 1px solid var(--neon-green);
+            min-width: 190px; padding: 10px 0;
+            backdrop-filter: blur(5px);
+            border-radius: 9px;
+            z-index: 1001;
+        }
+        .nav-links li:hover .dropdown-menu { display: block; }
+        .nav-links li:hover > a span { transform: rotate(180deg); color: var(--neon-green); }
+
+        .dropdown-menu li a {
+            display: block; padding: 10px 20px;
+            color: #fff; font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: all 0.2s; border-left: 2px solid transparent;
+        }
+        .dropdown-menu li a:hover {
+            background: rgba(11,156,49,0.2);
+            color: var(--neon-green); border-left-color: var(--neon-green);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none; cursor: pointer;
+           min-width: 40px;
+        }
+        .bar {
+            display: block; width: 25px; height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* --- HERO SECTION --- */
+        /* 4. FIXED: Using var(--dark-bg) instead of undefined var(--bg-black) */
+        .hero-logo-background {
+            position: relative;
+            min-height: 100vh;
+            height: auto;
+            padding-top: 100px; 
+            padding-bottom: 50px;
+            background-color: var(--dark-bg); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: var(--font-body);
+        }
+
+        .watermark-layer {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%; max-width: 800px;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        .watermark-layer img {
+            width: 100%; height: auto;
+            filter: drop-shadow(0 0 50px rgba(74, 222, 128, 0.2));
+        }
+
+        .content-layer {
+            position: relative; z-index: 2;
+            width: 100%; max-width: 900px; padding: 20px;
+        }
+
+        .giant-title {
+            font-family: var(--font-head);
+            font-size: 5.5rem; font-weight: 900;
+            text-transform: uppercase;
+            color: var(--neon-green); /* Fixed Variable */
+            line-height: 1; margin: 0;
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+        }
+        .thin-subtitle {
+            display: block; font-family: var(--font-head);
+            font-size: 2.2rem; font-weight: 400;
+            color: #a3a3a3; letter-spacing: 5px;
+            margin-top: 5px; text-transform: uppercase;
+            text-shadow: none;
+        }
+
+        .hero-text-block { margin: 40px 0; }
+
+        .highlight-green {
+            font-family: var(--font-body);
+            color: #2ea043; font-size: 1.3rem;
+            font-weight: 400; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 15px; margin-top: 30px;
+        }
+        .hero-text-block p {
+            font-family: var(--font-body);
+            font-size: 1.1rem; color: #888;
+            max-width: 650px; margin: 0 auto; line-height: 1.5;
+        }
+
+        /* Buttons */
+        .cta-container { display: flex; justify-content: center; gap: 20px; margin-top: 40px; }
+
+        .btn-glow-green {
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 15px 40px;
+            font-family: var(--font-head);
+            text-decoration: none; text-transform: uppercase;
+            background: rgba(0,0,0,0.5); transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+        .btn-glow-green:hover { background: rgba(11,156,49,0.05); color: var(--neon-green); }
+
+        .btn-outline-box {
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            padding: 15px 40px;
+            font-family: var(--font-head);
+            text-decoration: none; text-transform: uppercase;
+            background: rgba(0,0,0,0.5); transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);        
+        }
+        .btn-outline-box:hover { background: rgba(11,156,49,0.05); color: var(--neon-green); }
+
+        /* --- FEATURES FOOTER --- */
+        .features-footer {
+            background-color: #080808;
+            border-top: 1px solid #1a1a1a;
+            width: 100%; padding: 60px 5%;
+            display: flex; justify-content: center;
+        }
+        .footer-content {
+            width: 100%; max-width: 1400px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; text-align: center;
+        }
+        .feature-item { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        .icon-box svg {
+            width: 40px; height: 40px;
+            stroke: var(--neon-green); /* Fixed variable */
+            fill: none; stroke-width: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-family: var(--font-head);
+            font-size: 1rem; color: var(--white);
+            margin-bottom: 15px; text-transform: uppercase;
+        }
+        .feature-text {
+            font-size: 0.85rem; color: var(--text-grey);
+            line-height: 1.6; max-width: 270px; margin: 0 auto;
+        }
+
+        /* --- WHO WE ARE --- */
+        .about-section { 
+        padding: 60px 20px; 
+        text-align: center; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .about-title {
+            color: var(--neon-green); /* Fixed variable */
+            font-family: var(--font-head);
+            font-size: 1.2rem; margin-bottom: 20px;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .about-quote {
+            color: var(--text-grey); font-style: italic;
+            font-size: 0.9rem; max-width: 700px;
+            margin: 0 auto; line-height: 1.5;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 30px;
+            font-size: 0.7rem; color: #444;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            
+            .nav-links {
+                position: fixed; left: -100%; top: 60px;
+                flex-direction: column;
+                background-color: #000;
+                width: 100%; text-align: center;
+                transition: 0.3s ease-in-out;
+                padding-bottom: 30px;
+                border-bottom: 1px solid #333;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 20px 0; }
+            
+           
+            .hero-logo-background { padding-top: 150px; }
+            .giant-title { font-size: 3.5rem; letter-spacing: -1px; }
+            .thin-subtitle { font-size: 1.4rem; letter-spacing: 1px; }
+            .cta-container { flex-direction: column; align-items: center; }
+            .btn-glow-green, .btn-outline-box { width: 100%; max-width: 320px; }
+            
+            .footer-content { grid-template-columns: 1fr; gap: 50px; }
+        }
+        
+        
+        /* Mobile Responsive */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: fixed; left: -100%; top: 60px;
+        flex-direction: column;
+        background-color: #000;
+        width: 100%; text-align: center;
+        transition: 0.3s ease-in-out;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #333;
+    }
+    .nav-links.active { left: 0; }
+    .nav-links li { margin: 20px 0; }
+    .dropdown-menu { position: absolute; box-shadow: none; border: px; display: none; }
+    .nav-links li:hover .dropdown-menu { display: block; }
+    
+    
+}   
+/* --- GLOBAL MOBILE "BREATHING ROOM" FIX --- */
+@media (max-width: 768px) {
+    
+    /* 1. PREVENT EDGE TOUCHING */
+    /* Adds safe space on left/right so text never hits the bezel */
+    .main-content, 
+    .about-section, 
+    .vision-section,
+    .cta-section, 
+    .features-footer,
+    .software-header,
+    .feature-container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        width: 100% !important; 
+        box-sizing: border-box; /* Ensures padding doesn't widen the screen */
+    }
+
+    /* 2. SHRINK GIANT TEXT */
+    /* Makes massive titles fit nicely without wrapping 5 times */
+    .giant-title { font-size: 3rem; margin-bottom: 10px; }
+    .hero-title { font-size: 2.5rem; }
+    .thin-subtitle { font-size: 1.2rem; letter-spacing: 2px; }
+    
+    /* 3. INCREASE VERTICAL SPACING */
+    /* Pushes stacked items apart so they don't crowd each other */
+    .product-grid { gap: 40px; } /* More space between car cards */
+    .feature-row { gap: 50px; margin-bottom: 60px; } /* More space between software features */
+    .footer-content { gap: 60px; } /* More space between footer icons */
+    
+    /* 4. FIX HERO HEIGHT */
+    /* Allow the top section to grow if text is long, prevents overlap */
+    .hero-logo-background {
+        min-height: 80vh; /* Don't force full height on mobile */
+        height: auto;
+        padding-top: 140px;
+        padding-bottom: 80px;
+    }
+}
+        
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="assets/images/logo backless.png" alt="MG Logo" class="top-mini-logo">
+                <a href="index.html">MG PERFECT TECH</a>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            
+            
+            <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+          
+                <li>
+                    <a href="#">Simulators <span>&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="carP.html">Car Simulators</a></li>
+                        <li><a href="truck.html">Truck Simulators</a></li>
+                    </ul>
+                </li>
+                <li><a href="software.html">Software</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-logo-background">
+        <div class="watermark-layer">
+            <img src="assets/images/logo backless.png" alt="Back">
+        </div>
+
+        <div class="content-layer">
+            <h1 class="giant-title">
+                MG PERFECT <br>
+                <span class="thin-subtitle">TECH SOLUTION</span>
+            </h1>
+
+            <div class="hero-text-block">
+                <h3 class="highlight-green">EXPERIENCE THE EDGE OF REALITY</h3>
+                <p>
+                    Engineering precision-grade simulators for the next generation of 
+                    professional drivers and schools.
+                </p>
+            </div>
+
+            <div class="cta-container">
+                <a href="carP.html" class="btn-glow-green">Explore Simulators </a>
+                <a href="software.html" class="btn-outline-box">MG Software Engine</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-footer">
+        <div class="footer-content">
+            <div class="feature-item">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        <path d="M9 12l2 2 4-4"></path>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Precision Engineering</h3>
+                <p class="feature-text">Every component of an MG simulator is meticulously designed for maximum tactile realism and durability.</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-box">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <h3 class="feature-title">Real-time Feedback</h3>
+                <p class="feature-text">Proprietary haptic engines provide instant physical responses to road conditions, weight shifts, and collisions.</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="icon-box">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                     <circle cx="12" cy="8" r="7"></circle>
+                     <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                   </svg>
+                </div>
+                <h3 class="feature-title">Certified Training</h3>
+                <p class="feature-text">Our simulators are used by top driving schools nationally to ensure high success rates and safe driving habits.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <h3 class="about-title">Who We Are</h3>
+        <p class="about-quote">"MG Perfect Tech Solution is at the forefront of digital kinetic engineering. We don't just build hardware; we bridge the gap between virtual learning and real-world mastery."</p>
+    </section>
+
+    <footer>
+        &copy; 2026 MG Perfect Tech Solution. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
