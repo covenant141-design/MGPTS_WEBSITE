@@ -32,3 +32,4 @@ To keep the repository clean, files are organized as follows:
     ├── /images         # Product shots, logos, and icons
     └── /videos         # Software demos (demo.mp4)
 
+And for the Backend email transmission we can add PHP file to it as it is hosting on Hotinger.
