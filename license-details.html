@@ -254,23 +254,39 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo">
+   <nav class="navbar">
+    <div class="nav-content">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
                 <img src="assets/images/logo backless.png" alt="MG Logo" class="top-mini-logo">
-                <a href="index.html">MG PERFECT TECH</a>
-            </div>
+            </svg>
+           <a href="index.html"> MG PERFECT TECH</a> 
+                </div>
             <div class="hamburger" onclick="toggleMenu()">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="carP.html">Simulators</a></li>
-                <li><a href="software.html">Software</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
+    
+        
+        
+        
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            
+            <li>
+                <a href="#">Simulators <span>&#9662;</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="carP.html" class="active">Car Simulator</a></li>
+                    <li><a href="truck.html">Truck Simulators</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="software.html">Software</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul></div>
+        
     </nav>
 
     <div class="details-container">
