@@ -130,7 +130,30 @@
             transition: all 0.3s ease-in-out;
         }
 
+                 
+        /* Mobile Responsive */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: fixed; left: -100%; top: 60px;
+        flex-direction: column;
+        background-color: #000;
+        width: 100%; text-align: center;
+        transition: 0.3s ease-in-out;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #333;
+    }
+    .nav-links.active { left: 0; }
+    .nav-links li { margin: 20px 0; }
+    .dropdown-menu { position: absolute; box-shadow: none; border: px; display: none; }
+    .nav-links li:hover .dropdown-menu { display: block; }
+    
+    
+}   
 
+        
+        
         /* --- PAGE CONTENT --- */
         .details-container {
             max-width: 1000px;
