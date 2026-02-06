@@ -33,126 +33,7 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
-        
-      .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Dark Background */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 1000;
-    
-    /* This centers the inner content box */
-    display: flex;
-    justify-content: center; 
-}
-
-/* 2. The Inner Content (Handles Width Limit & Layout) */
-.nav-content {
-    width: 100%;
-    max-width: 1400px; /* LIMIT: Content won't stretch wider than this */
-    display: flex;
-    justify-content: space-between; /* Spreads items inside the limit */
-    align-items: center;
-    padding: 26px 4%; /* Padding stays inside the box */
-}
-
-        .logo {
-            display: flex; align-items: center; gap: 10px;
-            font-family: var(--font-head);
-            font-weight: 700; font-size: 1.1rem;
-            color: var(--neon-green); letter-spacing: 1px;
-             margin-left: -34px !important;
-        }
-        .logo svg { width: 24px; height: 24px; fill: var(--neon-green); }
-        .top-mini-logo { width: 40px; 
-        margin-bottom: 4px; 
-        filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.5)); 
-        
-        }
-
-        .nav-links { 
-            display: flex; 
-            gap: 30px; 
-            align-items: center;
-            list-style: none; /* Double check to remove dots */
-        }
-        .nav-links li { position: relative; }
-
-        .nav-links a.active {
-    color: var(--neon-green);
-    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
-}
-
-        .nav-links > li > a {
-            font-size: 0.8rem; text-transform: uppercase;
-            letter-spacing: 1px; font-weight: 600;
-            color: var(--white); transition: color 0.3s;
-            display: flex; align-items: center; gap: 4px;
-        }
-        .nav-links > li > a:hover { color: var(--neon-green); }
-        .nav-links > li > a span { font-size: 0.6rem; transition: transform 0.3s; }
-
-        /* Dropdown Menu */
-        .dropdown-menu {
-            display: none; position: absolute;
-            top: 100%; left: -10px;
-            background: rgba(27,27,27, 0.95);
-            border: 1px solid var(--neon-green);
-            min-width: 190px; padding: 10px 0;
-            backdrop-filter: blur(5px);
-            border-radius: 9px;
-            z-index: 1001;
-        }
-        .nav-links li:hover .dropdown-menu { display: block; }
-        .nav-links li:hover > a span { transform: rotate(180deg); color: var(--neon-green); }
-
-        .dropdown-menu li a {
-            display: block; padding: 10px 20px;
-            color: #fff; font-size: 0.8rem;
-            text-transform: uppercase;
-            transition: all 0.2s; border-left: 2px solid transparent;
-        }
-        .dropdown-menu li a:hover {
-            background: rgba(11,156,49,0.2);
-            color: var(--neon-green); border-left-color: var(--neon-green);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none; cursor: pointer;
-           min-width: 40px;
-        }
-        .bar {
-            display: block; width: 25px; height: 3px;
-            margin: 5px auto;
-            background-color: white;
-            transition: all 0.3s ease-in-out;
-        }
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .hamburger { display: block; }
-    
-    .nav-links {
-        position: fixed; left: -100%; top: 60px;
-        flex-direction: column;
-        background-color: #000;
-        width: 100%; text-align: center;
-        transition: 0.3s ease-in-out;
-        padding-bottom: 30px;
-        border-bottom: 1px solid #333;
-    }
-    .nav-links.active { left: 0; }
-    .nav-links li { margin: 20px 0; }
-    .dropdown-menu { position: absolute; box-shadow: none; border: px; display: none; }
-    .nav-links li:hover .dropdown-menu { display: block; }
-    .nav-content {
-    padding: 15px 20px !important; /* Reduced from 26px to 15px */
-    height: 60px; /* Force a compact height */
-}
-} 
+     
         
 
         
@@ -167,6 +48,7 @@
         .page-header {
             text-align: center;
             margin-bottom: 80px;
+            margin-top: 40px;
         }
         
         .page-title {
@@ -360,25 +242,150 @@
                 margin-top: 40px;
             }
             .price-large { font-size: 2.8rem; } /* Prevent wrapping */
+            
+            .page-header {
+        margin-top: 60px !important; /* Pushes the title down on phones */
+    }
         }
+        
+         .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark Background */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    
+    /* This centers the inner content box */
+    display: flex;
+    justify-content: center; 
+}
+
+/* 2. The Inner Content (Handles Width Limit & Layout) */
+.nav-content {
+    width: 100%;
+    max-width: 1400px; /* LIMIT: Content won't stretch wider than this */
+    display: flex;
+    justify-content: space-between; /* Spreads items inside the limit */
+    align-items: center;
+    padding: 26px 4%; /* Padding stays inside the box */
+}
+
+        .logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: var(--font-head);
+            font-weight: 700; font-size: 1.1rem;
+            color: var(--neon-green); letter-spacing: 1px;
+             margin-left: -34px !important;
+        }
+        .logo svg { width: 24px; height: 24px; fill: var(--neon-green); }
+        .top-mini-logo { width: 40px; 
+        margin-bottom: 4px; 
+        filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.5)); 
+        
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 30px; 
+            align-items: center;
+            list-style: none; /* Double check to remove dots */
+        }
+        .nav-links li { position: relative; }
+
+        .nav-links a.active {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+        .nav-links > li > a {
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 1px; font-weight: 600;
+            color: var(--white); transition: color 0.3s;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .nav-links > li > a:hover { color: var(--neon-green); }
+        .nav-links > li > a span { font-size: 0.6rem; transition: transform 0.3s; }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none; position: absolute;
+            top: 100%; left: -10px;
+            background: rgba(27,27,27, 0.95);
+            border: 1px solid var(--neon-green);
+            min-width: 190px; padding: 10px 0;
+            backdrop-filter: blur(5px);
+            border-radius: 9px;
+            z-index: 1001;
+        }
+        .nav-links li:hover .dropdown-menu { display: block; }
+        .nav-links li:hover > a span { transform: rotate(180deg); color: var(--neon-green); }
+
+        .dropdown-menu li a {
+            display: block; padding: 10px 20px;
+            color: #fff; font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: all 0.2s; border-left: 2px solid transparent;
+        }
+        .dropdown-menu li a:hover {
+            background: rgba(11,156,49,0.2);
+            color: var(--neon-green); border-left-color: var(--neon-green);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none; cursor: pointer;
+           min-width: 40px;
+        }
+        .bar {
+            display: block; width: 25px; height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+        }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    
+    .nav-links {
+        position: fixed; left: -100%; top: 60px;
+        flex-direction: column;
+        background-color: #000;
+        width: 100%; text-align: center;
+        transition: 0.3s ease-in-out;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #333;
+    }
+    .nav-links.active { left: 0; }
+    .nav-links li { margin: 20px 0; }
+    .dropdown-menu { position: absolute; box-shadow: none; border: px; display: none; }
+    .nav-links li:hover .dropdown-menu { display: block; }
+} 
+        
+    
+
+        
+        
     </style>
 </head>
 <body>
 
-   <nav class="navbar">
+  <nav class="navbar">
     <div class="nav-content">
         <div class="logo">
             <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
                 <img src="assets/images/logo-backless.png" alt="MG Logo" class="top-mini-logo">
             </svg>
            <a href="index.html"> MG PERFECT TECH</a> 
-                </div>
+             </div>
             <div class="hamburger" onclick="toggleMenu()">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </div>
-    
+       
         
         
         
@@ -388,16 +395,15 @@
             <li>
                 <a href="#">Simulators <span>&#9662;</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="carP.html" >Car Simulator</a></li>
+                    <li><a href="carP.html">Car Simulators</a></li>
                     <li><a href="truck.html">Truck Simulators</a></li>
                 </ul>
             </li>
             
-            <li><a href="software.html">Software</a></li>
+            <li><a href="software.html" >Software</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
-        </ul></div>
-        
+        </ul>  </div>
     </nav>
 
     <div class="details-container">
@@ -466,7 +472,7 @@
             <div class="razorpay-container">
                 <form>
                     <button type="button" class="btn-cta" style="background:var(--neon-green); color:#000; border:none; padding:18px 40px; font-weight:bold; font-size:1rem; cursor:pointer; border-radius:4px; text-transform:uppercase;" onclick="alert('Please paste your Razorpay code in line 225!')">
-                        BUY NOW - SECURE CHECKOUT
+                        BUY NOW -SECURELY
                     </button>
                     </form>
 
