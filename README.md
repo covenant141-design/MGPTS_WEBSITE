@@ -27,9 +27,11 @@ To keep the repository clean, files are organized as follows:
 ├── carP.html           # LMV (Light Motor Vehicle) Product Catalog
 ├── truck.html          # HMV (Heavy Motor Vehicle) Product Catalog
 ├── contact.html        # Contact form and location details
+├── license-detail.html # software details
 │
 ├── /assets
     ├── /images         # Product shots, logos, and icons
     └── /videos         # Software demos (demo.mp4)
+├── thank-you.html      #ADD THIS FILE TO THE RAZORPAY REDIRECT URL
 
 And for the Backend email transmission we can add PHP file to it as it is hosting on Hotinger.
