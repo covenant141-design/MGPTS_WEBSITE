@@ -223,36 +223,47 @@
 
         /* --- 6. CTA & FOOTER --- */
         .cta-section {
-    background-color: #0c0c0c;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    margin: 60px 20px;
-    
-    /* FLEXBOX MAGIC: This forces items to stack safely */
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    gap: 30px; /* This guarantees 30px space between text and button */
-    
-    /* Spacing inside the box */
-    padding: 60px 20px; 
-    
-    /* Ensure height adapts to content */
-    height: auto; 
-    min-height: 250px;
-}
+            background-color: #0c0c0c;
+            border: 1px solid #1a1a1a;
+            border-radius: 4px;
+            margin: 60px 20px;
+            
+            /* FLEXBOX MAGIC: This forces items to stack safely */
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            justify-content: center;
+            gap: 30px; /* This guarantees 30px space between text and buttons */
+            
+            /* Spacing inside the box */
+            padding: 60px 20px; 
+            
+            /* Ensure height adapts to content */
+            height: auto; 
+            min-height: 250px;
+        }
         
          
         .cta-text {
             font-family: var(--font-head);
             color: #fff;
             font-size: 1.8rem;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Reduced margin slightly to bring buttons closer */
             text-transform: uppercase;
             padding-bottom: 9px;
+            text-align: center;
         }
 
+        /* Button Wrapper for side-by-side layout */
+        .cta-buttons-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Allows stacking on mobile */
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* Primary "Buy" Button */
         .btn-cta {
             background-color: transparent;
             color: var(--neon-green);
@@ -267,12 +278,39 @@
             position: relative;
             overflow: hidden;
             border-top-left-radius: 15px;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn-cta:hover {
             background-color: var(--neon-green);
             color: #000;
             box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
+        }
+
+        /* New Secondary "Brochure" Button */
+        .btn-brochure {
+            background-color: transparent;
+            color: #fff;
+            padding: 20px 45px;
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border: 2px solid #444; /* Grey border to distinguish from buy button */
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-brochure:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
         }
 
         footer {
@@ -288,41 +326,20 @@
         @media (max-width: 768px) {
             .feature-row, .feature-row.reverse { flex-direction: column; gap: 30px; }
             .software-header h1 { font-size: 2.5rem; }
-
+            
+            /* Stack buttons on mobile */
+            .cta-buttons-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .btn-cta, .btn-brochure {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+            }
         }
- /* --- UPDATED MOBILE RESPONSIVE (Triggers at 1024px now) --- */
-@media (max-width: 768px) {
-    
-  
-
-    /* 3. Resize Text so it doesn't overlap when zoomed */
-    .giant-title {
-        font-size: 3.5rem; /* Smaller font */
-        line-height: 1.2;
-    }
-
-    .thin-subtitle {
-        font-size: 1.8rem;
-        letter-spacing: 4px;
-        line-height: 1.4;
-    }
-
-    .title-wrapper {
-        gap: 15px;
-    }
-
-    /* 4. Fix Buttons */
-    .cta-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn-glow-green, .btn-outline-box {
-        width: 100%;
-        max-width: 320px;
-    }
-}
-
+ 
         
       .navbar {
     position: fixed;
@@ -439,11 +456,6 @@
     .dropdown-menu { position: absolute; box-shadow: none; border: px; display: none; }
     .nav-links li:hover .dropdown-menu { display: block; }
 } 
-        
-    
-
-        
-        
     </style>
 </head>
 <body>
@@ -462,9 +474,6 @@
             <span class="bar"></span>
         </div>
        
-        
-        
-        
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             
@@ -562,10 +571,15 @@
     </div>
 </section>
 
-   <!-- Call to Action -->
-    <section class="cta-section">
+   <section class="cta-section">
         <h3 class="cta-text">Transform your Driving Institute Today</h3>
-         <a href="license-details.html" class="btn-cta">Buy Software License</a>    </section>
+        
+        <div class="cta-buttons-wrapper">
+             <a href="https://drive.google.com/file/d/1ZeVjnysTb3gq9W2LrvP3L8p-g7dHQye6/view?usp=sharing" class="btn-brochure" target="_blank" download>Download Brochure</a>
+             
+             <a href="license-details.html" class="btn-cta">Buy Software License</a>
+        </div>
+    </section>
 
     <footer>
         &copy; 2009 MG Perfect Tech Solution. All rights reserved.
@@ -577,8 +591,4 @@
     }
 </script>
 </body>
-
 </html>
-
-
-
